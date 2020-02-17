@@ -72,5 +72,5 @@ if __name__ == "__main__":
     # Move lib -> new repo name
     # Move this file to __alreadyinitialized.py
     new_src_dir = name.replace("-", "_").strip('"')
-    shutil.move(f"{ROOT}/lib", f"{ROOT}/{new_src_dir}")
+    shutil.move(f"{ROOT}/libcontents", f"{ROOT}/{new_src_dir}")
     shutil.move(f"{ROOT}/scripts/init.py", f"{ROOT}/scripts/__alreadyinitialized.py")
