@@ -1,0 +1,8 @@
+[run]
+source = .
+omit =
+    test/*
+    .venv/*
+
+[report]
+show_missing = true

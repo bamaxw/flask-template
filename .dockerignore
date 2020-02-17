@@ -1,0 +1,22 @@
+.git
+.dockerignore
+.commit-id
+.vscode
+
+# Python virtual environment
+.venv
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Unit tests / coverage reports
+htmlcov/
+.tox/
+.coverage
+.cache
+.hypothesis
+.mypy_cache
+.pytest_cache
+nosetests.xml
+coverage.xml

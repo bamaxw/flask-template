@@ -1,0 +1,6 @@
+flask
+gevent
+flasgger
+uwsgi
+flask_cors
+simplejson
