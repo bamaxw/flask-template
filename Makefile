@@ -1,16 +1,21 @@
-name=$(shell ./scripts/getopt.py NAME)
-vendor=$(shell ./scripts/getopt.py VENDOR)
-description=$(shell ./scripts/getopt.py DESCRIPTION)
-github_repo=$(shell ./scripts/getopt.py GITHUB_REPO)
-repo=$(shell ./scripts/getopt.py DOCKER_REPO)
+name=$(shell ./scripts/getopt.py APP_NAME)
+vendor=$(shell ./scripts/getopt.py APP_VENDOR)
+description=$(shell ./scripts/getopt.py APP_DESCRIPTION)
+github_repo=$(shell ./scripts/getopt.py APP_GITHUB_REPO)
+repo=$(shell ./scripts/getopt.py APP_DOCKER_REPO)
 
 version=$(shell git rev-parse HEAD)
 semver-version=$(shell git describe --abbrev=0 --tags)
-repo="<NOREPO>"
 date=$(shell date -u +'%Y-%m-%dT%H:%M:%SZ')
 hypothesis-profile?="default"
 
 .PHONY: clean update-pip install-reqs install-test-reqs test create-venv check-format mypy lint check format build push-version push-latest push-semver tag-latest tag-semver
+
+# Template
+init:
+	chmod +x ./scripts/init.py
+	chmod +x ./scripts/getopt.py
+	./scripts/init.py
 
 # Python
 clean:

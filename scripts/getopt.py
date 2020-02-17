@@ -6,9 +6,15 @@ from python_utils import ROOT, colors
 
 def getopt(opt: str) -> str:
     manifest_path = f"{ROOT}/manifest.sh"
-    for line in open(manifest_path, "r"):
-        if line.startswith(f"{opt}="):
-            return line.split("=")[-1].strip()
+    try:
+        for line in open(manifest_path, "r"):
+            if line.startswith(f"{opt}="):
+                return line.split("=")[-1].strip()
+    except FileNotFoundError:
+        raise SystemExit(
+            f"{colors.red}could not find manifest. please run: "
+            f"{colors.green}'./scripts/init.py'{colors.reset}"
+        )
     raise SystemExit(f"{colors.red}could not find option {opt!r}{colors.reset}")
 
 

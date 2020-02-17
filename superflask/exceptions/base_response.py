@@ -18,6 +18,7 @@ class BaseResponseError(Exception):
             description="Something bad has happened because of ...",
         )
     """
+
     default_status_code = 400
 
     def __init__(

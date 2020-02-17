@@ -30,7 +30,7 @@ def askfor(
     var = input(
         f"{prompt} "
         f"{color}[e.g. {example}]{colors.reset} "
-        f"[{'required' if required else 'not required'}]\n"
+        f"[{'required' if required else 'not required'}] >>> "
     )
     if not var and required:
         raise SystemExit(f"{colors.red}you must provide {name!r}")
@@ -63,8 +63,7 @@ if __name__ == "__main__":
 
     manifest_path = f"{ROOT}/manifest.sh"
     new_manifest_contents = (
-        MANIFEST_TEMPLATE
-        .replace(placeholders.name, name)
+        MANIFEST_TEMPLATE.replace(placeholders.name, name)
         .replace(placeholders.vendor, vendor)
         .replace(placeholders.docker, docker_repo)
         .replace(placeholders.github, github_repo)
