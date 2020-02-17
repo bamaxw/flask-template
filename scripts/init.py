@@ -9,12 +9,14 @@ class placeholders:
     vendor: str = "<<VENDOR_PLACEHOLDER>>"
     docker: str = "<<DOCKER_REPO_PLACEHOLDER>>"
     github: str = "<<GITHUB_REPO_PLACEHOLDER>>"
+    description: str = "<<DESCRIPTION_PLACEHOLDER>>"
 
 
-MANIFEST_TEMPLATE = f"""name="{placeholders.name}"
-vendor="{placeholders.vendor}"
-docker-repo="{placeholders.docker}"
-github-repo="{placeholders.github}"
+MANIFEST_TEMPLATE = f"""APP_NAME="{placeholders.name}"
+APP_VENDOR="{placeholders.vendor}"
+APP_DOCKER_REPO="{placeholders.docker}"
+APP_GITHUB_REPO="{placeholders.github}"
+APP_DESCRIPTION="{placeholders.description}"
 """
 
 
@@ -52,19 +54,22 @@ if __name__ == "__main__":
         example="github.com/bamaxw/flask-template",
         required=False,
     )
+    description = askfor(
+        "description",
+        "Application description",
+        example="general purpose etc",
+        required=False,
+    )
 
     manifest_path = f"{ROOT}/manifest.sh"
-    with open(manifest_path, "w+") as manifest:
-        manifest.write(MANIFEST_TEMPLATE)
-        manifest.flush()
-    with open(manifest_path, "r") as manifest:
-        new_manifest_contents = (
-            manifest.read()
-            .replace(placeholders.name, name)
-            .replace(placeholders.vendor, vendor)
-            .replace(placeholders.docker, docker_repo)
-            .replace(placeholders.github, github_repo)
-        )
+    new_manifest_contents = (
+        MANIFEST_TEMPLATE
+        .replace(placeholders.name, name)
+        .replace(placeholders.vendor, vendor)
+        .replace(placeholders.docker, docker_repo)
+        .replace(placeholders.github, github_repo)
+        .replace(placeholders.description, description)
+    )
     with open(manifest_path, "w") as manifest:
         manifest.write(new_manifest_contents)
         manifest.flush()

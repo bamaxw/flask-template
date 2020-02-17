@@ -1,4 +1,9 @@
-name="<APPNAME>"
+name=$(shell ./scripts/getopt.py NAME)
+vendor=$(shell ./scripts/getopt.py VENDOR)
+description=$(shell ./scripts/getopt.py DESCRIPTION)
+github_repo=$(shell ./scripts/getopt.py GITHUB_REPO)
+repo=$(shell ./scripts/getopt.py DOCKER_REPO)
+
 version=$(shell git rev-parse HEAD)
 semver-version=$(shell git describe --abbrev=0 --tags)
 repo="<NOREPO>"
@@ -62,7 +67,7 @@ build:
 		--build-arg APP_NAME=$(name) \
 		--build-arg VENDOR=$(vendor) \
 		--build-arg DESCRIPTION=$(description) \
-		--build-arg GITHUB_URL=$(github-url) \
+		--build-arg GITHUB_URL=$(github_repo) \
 		--build-arg BUILD_DATE=$(date) \
 		--build-arg VCS_REF=$(version) \
 		--build-arg SEMVER_VERSION=$(semver-version) \
