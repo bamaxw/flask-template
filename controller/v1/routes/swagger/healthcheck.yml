@@ -1,0 +1,13 @@
+Respond 'OK' if everything is fine
+---
+tags:
+  - Healthcheck
+get:
+  description: Endpoint used to check whether everything is healthy
+  responses:
+    200:
+      description: Everything is fine!
+      content:
+        plain/text:
+          schema: str
+          example: OK

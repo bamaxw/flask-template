@@ -13,7 +13,7 @@ WORKDIR /opt/app
 
 RUN pip3 install -r requirements.txt
 RUN pip3 uninstall pip -y
-ADD . /opt/babylon/air-api
+ADD . /opt/app
 
 ARG APP_NAME
 ARG VENDOR
